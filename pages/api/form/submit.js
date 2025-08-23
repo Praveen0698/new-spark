@@ -1,20 +1,15 @@
 import connectToDatabase from "@/lib/mongodb";
 import { FormModel } from "@/models/FormModel";
-import nextConnect from "next-connect";
 
-const apiRoute = nextConnect({
-  onError(error, req, res) {
-    res.status(501).json({ error: `Something went wrong: ${error.message}` });
-  },
-  onNoMatch(req, res) {
-    res.status(405).json({ error: `Method '${req.method}' not allowed` });
-  },
-});
-
-apiRoute.post(async (req, res) => {
-  await connectToDatabase();
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).json({ error: `Method '${req.method}' not allowed` });
+  }
 
   try {
+    await connectToDatabase();
+
     const formData = req.body;
 
     // Save only field data, completely ignore file fields
@@ -33,13 +28,10 @@ apiRoute.post(async (req, res) => {
 
     await form.save();
 
-    res
-      .status(201)
-      .json({ message: "Form submitted successfully (files ignored)" });
+    res.status(201).json({ message: "Form submitted successfully (files ignored)" });
   } catch (error) {
     console.error("Error submitting form:", error);
     res.status(500).json({ error: "Internal server error" });
   }
-});
+}
 
-export default apiRoute;
