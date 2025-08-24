@@ -3,14 +3,15 @@ import { FormModel } from "@/models/FormModel";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
     return res
       .status(405)
       .json({ error: `Method '${req.method}' not allowed` });
   }
 
-  await connectToDatabase();
-
   try {
+    await connectToDatabase();
+
     const formData = req.body;
 
     // Save only field data, completely ignore file fields
