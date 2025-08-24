@@ -66,40 +66,85 @@ const Undertaking = ({ formData, setFormData }) => {
         Degree Courses of JIPMER for next three sessions.
       </p>
 
-      {/* Uploads Section */}
-      <div style={{ marginTop: "30px" }}>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="medicalFitnessUpload" style={fileLabelStyle}>
-            Upload Medical Fitness Certificate
-          </label>
-          <input
-            id="medicalFitnessUpload"
-            type="file"
-            accept=".pdf,.jpg,.png"
-            style={{ display: "none" }}
-            onChange={(e) => setMedicalFitnessFile(e.target.files[0])}
-          />
-          {medicalFitnessFile && (
-            <span style={{ fontStyle: "italic" }}>
-              {medicalFitnessFile.name}
-            </span>
-          )}
+      {/* Uploads and Signature Section */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "40px",
+          flexWrap: "wrap",
+          gap: "20px",
+        }}
+      >
+        {/* Upload buttons */}
+        <div style={{ flex: "1 1 45%" }}>
+          <div style={{ marginBottom: "15px" }}>
+            <label htmlFor="medicalFitnessUpload" style={fileLabelStyle}>
+              Upload Medical Fitness Certificate
+            </label>
+            <input
+              id="medicalFitnessUpload"
+              type="file"
+              accept=".pdf,.jpg,.png"
+              style={{ display: "none" }}
+              onChange={(e) => setMedicalFitnessFile(e.target.files[0])}
+            />
+            {medicalFitnessFile && (
+              <span
+                style={{
+                  display: "block",
+                  marginTop: "8px",
+                  fontStyle: "italic",
+                }}
+              >
+                {medicalFitnessFile.name}
+              </span>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="suretyBondUpload" style={fileLabelStyle}>
+              Upload Surety Bond
+            </label>
+            <input
+              id="suretyBondUpload"
+              type="file"
+              accept=".pdf,.jpg,.png"
+              style={{ display: "none" }}
+              onChange={(e) => setSuretyBondFile(e.target.files[0])}
+            />
+            {suretyBondFile && (
+              <span
+                style={{
+                  display: "block",
+                  marginTop: "8px",
+                  fontStyle: "italic",
+                }}
+              >
+                {suretyBondFile.name}
+              </span>
+            )}
+          </div>
         </div>
 
-        <div>
-          <label htmlFor="suretyBondUpload" style={fileLabelStyle}>
-            Upload Surety Bond
-          </label>
+        {/* Signature inputs */}
+        <div style={{ flex: "1 1 45%", textAlign: "right" }}>
+          <p>Signature of the Candidate:</p>
           <input
-            id="suretyBondUpload"
-            type="file"
-            accept=".pdf,.jpg,.png"
-            style={{ display: "none" }}
-            onChange={(e) => setSuretyBondFile(e.target.files[0])}
+            type="text"
+            name="signature"
+            value={formData.signature}
+            onChange={handleInputChange}
+            style={{ ...inputStyle, width: "200px" }}
           />
-          {suretyBondFile && (
-            <span style={{ fontStyle: "italic" }}>{suretyBondFile.name}</span>
-          )}
+          <p style={{ marginTop: "10px" }}>Name:</p>
+          <input
+            type="text"
+            name="nameAgain"
+            value={formData.nameAgain}
+            onChange={handleInputChange}
+            style={{ ...inputStyle, width: "200px" }}
+          />
         </div>
       </div>
     </section>

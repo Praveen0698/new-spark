@@ -1,17 +1,13 @@
 import connectToDatabase from "@/lib/mongodb";
 import { FormModel } from "@/models/FormModel";
-import nextConnect from "next-connect";
 
-const apiRoute = nextConnect({
-  onError(error, req, res) {
-    res.status(501).json({ error: `Something went wrong: ${error.message}` });
-  },
-  onNoMatch(req, res) {
-    res.status(405).json({ error: `Method '${req.method}' not allowed` });
-  },
-});
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res
+      .status(405)
+      .json({ error: `Method '${req.method}' not allowed` });
+  }
 
-apiRoute.post(async (req, res) => {
   await connectToDatabase();
 
   try {
@@ -40,6 +36,4 @@ apiRoute.post(async (req, res) => {
     console.error("Error submitting form:", error);
     res.status(500).json({ error: "Internal server error" });
   }
-});
-
-export default apiRoute;
+}
