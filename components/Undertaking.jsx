@@ -14,7 +14,7 @@ const Undertaking = ({ formData, setFormData }) => {
   const inputStyle = {
     border: "none",
     borderBottom: "1px solid black",
-    width: "300px",
+    width: "150px",
     margin: "0 5px",
     outline: "none",
   };
@@ -130,21 +130,9 @@ const Undertaking = ({ formData, setFormData }) => {
         {/* Signature inputs */}
         <div style={{ flex: "1 1 45%", textAlign: "right" }}>
           <p>Signature of the Candidate:</p>
-          <input
-            type="text"
-            name="signature"
-            value={formData.signature}
-            onChange={handleInputChange}
-            style={{ ...inputStyle, width: "200px" }}
-          />
+          <input type="text" style={{ ...inputStyle, width: "200px" }} />
           <p style={{ marginTop: "10px" }}>Name:</p>
-          <input
-            type="text"
-            name="nameAgain"
-            value={formData.nameAgain}
-            onChange={handleInputChange}
-            style={{ ...inputStyle, width: "200px" }}
-          />
+          <input type="text" style={{ ...inputStyle, width: "200px" }} />
         </div>
       </div>
     </section>

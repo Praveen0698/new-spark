@@ -129,19 +129,9 @@ export default function JoinForm() {
         {/* Signature & Name */}
         <div style={{ flex: "1 1 45%", textAlign: "right" }}>
           <p>Signature of the Candidate:</p>
-          <input
-            type="text"
-            value={signature}
-            onChange={(e) => setSignature(e.target.value)}
-            style={{ ...inputStyle, width: "200px" }}
-          />
+          <input type="text" style={{ ...inputStyle, width: "200px" }} />
           <p style={{ marginTop: "10px" }}>Name:</p>
-          <input
-            type="text"
-            value={nameAgain}
-            onChange={(e) => setNameAgain(e.target.value)}
-            style={{ ...inputStyle, width: "200px" }}
-          />
+          <input type="text" style={{ ...inputStyle, width: "200px" }} />
         </div>
       </div>
     </section>

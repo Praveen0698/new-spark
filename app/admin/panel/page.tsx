@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Modal, Box, Typography, TextField } from "@mui/material";
 import axios from "axios";
@@ -10,14 +10,16 @@ interface CustomJwtPayload {
   userType: string;
 }
 
-export default function AdminPanel() {
+function AdminPanelInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const accessToken = searchParams?.get("accesstoken");
+
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [openTable, setOpenTable] = useState(false);
   const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -36,15 +38,16 @@ export default function AdminPanel() {
       address: "",
     });
   };
+
   const handleTableOpen = () => setOpenTable(true);
   const handleTableClose = () => setOpenTable(false);
 
   const handleInputChange = (e: any) => {
-    if (e.target.name === "file") {
-      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "file" ? files[0] : value,
+    }));
   };
 
   useEffect(() => {
@@ -52,19 +55,22 @@ export default function AdminPanel() {
       router.push("/admin");
       return;
     }
-    const userType = jwtDecode<CustomJwtPayload>(accessToken)?.userType;
-    if (userType !== "admin") {
+    try {
+      const decoded = jwtDecode<CustomJwtPayload>(accessToken);
+      if (decoded.userType !== "admin") {
+        router.push("/admin");
+      }
+    } catch (error) {
       router.push("/admin");
     }
-  }, []);
+  }, [accessToken]);
 
   const handleSave = async () => {
     setLoading(true);
     try {
       const res = await axios.post(`/api/user/create`, formData);
-
       if (res.data === "failure") {
-        setError("** User already exist");
+        setError("** User already exists");
       } else {
         handleClose();
         getUser();
@@ -258,6 +264,15 @@ export default function AdminPanel() {
         </div>
       </div>
     </>
+  );
+}
+
+// Wrap the main component in Suspense
+export default function AdminPanel() {
+  return (
+    <Suspense fallback={<div>Loading admin panel...</div>}>
+      <AdminPanelInner />
+    </Suspense>
   );
 }
 

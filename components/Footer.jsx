@@ -1,5 +1,13 @@
 import React from "react";
 
+const inputStyle = {
+  border: "none",
+  borderBottom: "1px solid black",
+  width: "150px",
+  margin: "0 5px",
+  outline: "none",
+};
+
 const Footer = ({ formData, setFormData }) => {
   const handleInputChange = (e) => {
     setFormData({
@@ -15,102 +23,18 @@ const Footer = ({ formData, setFormData }) => {
       </h3>
 
       <p style={{ lineHeight: "1.8" }}>
-        “I{" "}
-        <input
-          type="text"
-          name="candidateName"
-          value={formData.candidateName}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "200px",
-          }}
-        />{" "}
+        “I <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
         Son/daughter of Shri{" "}
-        <input
-          type="text"
-          name="fatherName"
-          value={formData.fatherName}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "200px",
-          }}
-        />
-        , resident{" "}
-        <input
-          type="text"
-          name="residence"
-          value={formData.residence}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "100px",
-          }}
-        />{" "}
-        of{" "}
-        <input
-          type="text"
-          name="street"
-          value={formData.street}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "150px",
-          }}
-        />{" "}
-        Street,{" "}
-        <input
-          type="text"
-          name="village"
-          value={formData.village}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "150px",
-          }}
-        />{" "}
+        <input type="text" style={{ ...inputStyle, width: "200px" }} />,
+        resident <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
+        of <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
+        Street, <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
         Village/Town/City,{" "}
-        <input
-          type="text"
-          name="district"
-          value={formData.district}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "120px",
-          }}
-        />{" "}
+        <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
         District,{" "}
-        <input
-          type="text"
-          name="state"
-          value={formData.state}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "120px",
-          }}
-        />{" "}
-        State, hereby declare that I belong to the{" "}
-        <input
-          type="text"
-          name="minorityCommunity"
-          value={formData.minorityCommunity}
-          onChange={handleInputChange}
-          style={{
-            border: "none",
-            borderBottom: "1px solid black",
-            width: "180px",
-          }}
-        />{" "}
+        <input type="text" style={{ ...inputStyle, width: "200px" }} /> State,
+        hereby declare that I belong to the{" "}
+        <input type="text" style={{ ...inputStyle, width: "200px" }} />{" "}
         (indicate minority community notified by Central Government i.e.
         Muslim/Sikh/Christian/Buddhist/Parsi/Jain).
       </p>
@@ -125,31 +49,11 @@ const Footer = ({ formData, setFormData }) => {
         <div>
           <p>
             Place:{" "}
-            <input
-              type="text"
-              name="place"
-              value={formData.place}
-              onChange={handleInputChange}
-              style={{
-                border: "none",
-                borderBottom: "1px solid black",
-                width: "150px",
-              }}
-            />
+            <input type="text" style={{ ...inputStyle, width: "200px" }} />
           </p>
           <p>
             Date:{" "}
-            <input
-              type="text"
-              name="date"
-              value={formData.date}
-              onChange={handleInputChange}
-              style={{
-                border: "none",
-                borderBottom: "1px solid black",
-                width: "150px",
-              }}
-            />
+            <input type="text" style={{ ...inputStyle, width: "200px" }} />
           </p>
         </div>
 
@@ -157,28 +61,10 @@ const Footer = ({ formData, setFormData }) => {
           <p>Signature of the Candidate:</p>
           <input
             type="text"
-            name="signature"
-            value={formData.signature}
-            onChange={handleInputChange}
-            style={{
-              border: "none",
-              borderBottom: "1px solid black",
-              width: "200px",
-              marginBottom: 10,
-            }}
+            style={{ ...inputStyle, width: "200px", marginBottom: 20 }}
           />
           <p>Name of the Candidate:</p>
-          <input
-            type="text"
-            name="nameAgain"
-            value={formData.nameAgain}
-            onChange={handleInputChange}
-            style={{
-              border: "none",
-              borderBottom: "1px solid black",
-              width: "200px",
-            }}
-          />
+          <input type="text" style={{ ...inputStyle, width: "200px" }} />
         </div>
       </div>
 
