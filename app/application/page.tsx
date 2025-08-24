@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Header from "@/components/Header";
 import Signature from "@/components/Signature";
 import Personal from "@/components/Personal";
@@ -18,7 +18,7 @@ import headerimg from "@/public/headerimg.png";
 import Undertaking from "@/components/Undertaking";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const Mainfile = () => {
+function MainContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const accessToken = searchParams?.get("token");
@@ -119,6 +119,8 @@ const Mainfile = () => {
   const [address, setAddress] = useState("");
   const [file, setFile] = useState("");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [timer, setTimer] = useState(3);
 
   useEffect(() => {
     if (accessToken) {
@@ -133,9 +135,6 @@ const Mainfile = () => {
     }
   }, [accessToken]);
 
-  const [open, setOpen] = useState(false);
-  const [timer, setTimer] = useState(3);
-
   const isFormValid =
     formData.name.length > 0 &&
     formData.dob.length > 0 &&
@@ -147,7 +146,6 @@ const Mainfile = () => {
       : true;
 
   const handleSave = () => {
-    console.log(isFormValid);
     if (isFormValid) {
       alert("Please fill up the form");
     } else {
@@ -173,18 +171,6 @@ const Mainfile = () => {
     }, 1000);
   };
 
-  // const handleSave = async () => {
-  //   setLoading(true);
-  //   try {
-  //     await axios.post(`${baseUrl}/application-form`, formData);
-  //     handleOpen();
-  //   } catch (err) {
-  //     console.error(err);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   return (
     <>
       <div className="fullpage" style={{ background: "#fdfdfd" }}>
@@ -207,33 +193,12 @@ const Mainfile = () => {
           <Footer formData={formData} setFormData={setFormData} />
 
           <div className="buttons-cont">
-            <button
-              className="submit-btn"
-              onClick={handleSave}
-              // disabled={isFormValid}
-            >
+            <button className="submit-btn" onClick={handleSave}>
               {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </div>
 
-        {/* <div className="footer" style={{ backgroundColor: bgColor }}>
-          <div className="full-col"></div>
-          <div
-            className="full-color"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <p
-              style={{ fontSize: "0.8rem", color: textColor, marginBottom: 0 }}
-            >
-              {address}
-            </p>
-          </div>
-        </div> */}
         <footer
           style={{
             width: "100%",
@@ -283,6 +248,12 @@ const Mainfile = () => {
       </Modal>
     </>
   );
-};
+}
 
-export default Mainfile;
+export default function Mainfile() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
+  );
+}
