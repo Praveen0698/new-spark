@@ -74,7 +74,6 @@ const Undertaking = () => {
           </div>
         </div>
 
-        {/* Signature inputs */}
         <div style={{ flex: "1 1 45%", textAlign: "right" }}>
           <p>Signature of the Candidate:</p>
           <input type="text" style={{ ...inputStyle, width: "200px" }} />
