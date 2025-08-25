@@ -189,7 +189,7 @@ function MainContent() {
           <Contact formData={formData} setFormData={setFormData} />
           <Education formData={formData} setFormData={setFormData} />
           <JoinForm />
-          <Undertaking formData={formData} setFormData={setFormData} />
+          <Undertaking />
           <Footer formData={formData} setFormData={setFormData} />
 
           <div className="buttons-cont">

@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 
-const Undertaking = ({ formData, setFormData }) => {
+const Undertaking = () => {
   const [medicalFitnessFile, setMedicalFitnessFile] = useState(null);
-  const [suretyBondFile, setSuretyBondFile] = useState(null);
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const inputStyle = {
     border: "none",
@@ -47,7 +39,6 @@ const Undertaking = ({ formData, setFormData }) => {
         institution allotted by BDL-2025 Joining Report.
       </p>
 
-      {/* Uploads and Signature Section */}
       <div
         style={{
           display: "flex",
@@ -57,7 +48,6 @@ const Undertaking = ({ formData, setFormData }) => {
           gap: "20px",
         }}
       >
-        {/* Upload buttons */}
         <div style={{ flex: "1 1 45%" }}>
           <div style={{ marginBottom: "15px" }}>
             <label htmlFor="medicalFitnessUpload" style={fileLabelStyle}>
@@ -82,33 +72,8 @@ const Undertaking = ({ formData, setFormData }) => {
               </span>
             )}
           </div>
-
-          <div>
-            <label htmlFor="suretyBondUpload" style={fileLabelStyle}>
-              Upload Surety Bond
-            </label>
-            <input
-              id="suretyBondUpload"
-              type="file"
-              accept=".pdf,.jpg,.png"
-              style={{ display: "none" }}
-              onChange={(e) => setSuretyBondFile(e.target.files[0])}
-            />
-            {suretyBondFile && (
-              <span
-                style={{
-                  display: "block",
-                  marginTop: "8px",
-                  fontStyle: "italic",
-                }}
-              >
-                {suretyBondFile.name}
-              </span>
-            )}
-          </div>
         </div>
 
-        {/* Signature inputs */}
         <div style={{ flex: "1 1 45%", textAlign: "right" }}>
           <p>Signature of the Candidate:</p>
           <input type="text" style={{ ...inputStyle, width: "200px" }} />
