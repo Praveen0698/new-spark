@@ -3,14 +3,12 @@ import React, { useState } from "react";
 export default function JoinForm() {
   const [offerNo, setOfferNo] = useState("");
   const [offerDate, setOfferDate] = useState("");
-  const [dutyShift, setDutyShift] = useState("forenoon");
+  const [dutyShift, setDutyShift] = useState("afternoon");
   const [joinDate, setJoinDate] = useState("");
   const [file, setFile] = useState(null);
-  const [signature, setSignature] = useState("");
-  const [nameAgain, setNameAgain] = useState("");
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setFile(e.target.files);
   };
 
   const inputStyle = {
@@ -33,7 +31,7 @@ export default function JoinForm() {
       </h3>
 
       <p style={{ lineHeight: "2" }}>
-        With reference to your Offer No. Edn.
+        With Reference to your offer no.{" "}
         <input
           type="text"
           value={offerNo}
@@ -41,7 +39,7 @@ export default function JoinForm() {
           style={inputStyle}
           required
         />
-        {"  "}dated{"  "}
+        {" "} Dated {" "}
         <input
           type="date"
           value={offerDate}
@@ -49,8 +47,8 @@ export default function JoinForm() {
           style={{ ...inputStyle, width: "160px" }}
           required
         />
-        , I have to state that I accepted your offer on the terms and conditions
-        mentioned therein and report myself for duty as Senior Resident on the{" "}
+        {", "}
+        I have to state that I accepted your offer on the BDL and conditions mentioned there in and report myself for duty at Bharat Dynamics Limited (BDL), Address: Bharat Dynamics Limited, Corporate office, Plot No. 38-39, TSFC Building (Near ICICI Towers), Financial District, Gachibowli, Hyderabad, Telangana (State) - 500032., Technical in the Management Trainee (Technical Services) E-1 with Pay Matrix, Pay Scale Code E-II, Pay Scale ₹ 40,000 - ₹ 1,40,000 (2017 IDA based) for BDL Management Trainee (Technical Services) is 7th CPC Pay Matrix Level E-1 on the {" "}
         <select
           value={dutyShift}
           onChange={(e) => setDutyShift(e.target.value)}
@@ -60,17 +58,15 @@ export default function JoinForm() {
           <option value="forenoon">forenoon</option>
           <option value="afternoon">afternoon</option>
         </select>
-        {"  "} of{" "}
+        {" "} of {" "}
         <input
           type="date"
           value={joinDate}
           onChange={(e) => setJoinDate(e.target.value)}
           style={{ ...inputStyle, width: "160px" }}
           required
-        />
-        {"  "}
-        at the Jawaharlal Institute of Post-Graduate Medical Education and
-        Research, Puducherry.
+        />{" "}
+        at BDL (A Government of India Enterprise) Address: - Bharat Dynamics Limited, Kanchanbagh (PO), Hyderabad, Telangana - 500058
       </p>
 
       {/* Upload & Signature Section */}

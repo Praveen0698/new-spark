@@ -36,34 +36,15 @@ const Undertaking = ({ formData, setFormData }) => {
       </h3>
 
       <p>
-        I, Dr{" "}
-        <input
-          type="text"
-          name="candidateName"
-          value={formData.candidateName}
-          onChange={handleInputChange}
-          style={inputStyle}
-        />
-        , First year Senior Resident of{" "}
-        <input
-          type="text"
-          name="department"
-          value={formData.department}
-          onChange={handleInputChange}
-          style={inputStyle}
-        />
-        , Course at Jawaharlal Institute of Post-Graduate Medical Education and
-        Research, Puducherry, do hereby undertake to complete the said course as
-        per the requirements of the Institute. In the event of my leaving the
-        studies in mid-stream, I undertake to pay to the Government a sum of Rs.
-        50,000/- (Rupees Fifty Thousand only) if I discontinue the course on or
-        before 31.01.2017; Rs. 2,00,000/- (Rupees Two Lakhs only) if I
-        discontinue the course after 31.01.2017 and within the First Academic
-        year and Rs. 5,00,000/- (Rupees Five Lakhs only) if I discontinue the
-        course in the Second or Third Academic years. If I leave the course
-        after 31<sup>st</sup> January 2017, I understand that I shall be
-        debarred to appear for the Entrance Examination for Super Specialty
-        Degree Courses of JIPMER for next three sessions.
+        I certify that I have no such physical handicap/disability which would hinder the pursuit
+        of studies in the courses in which I am seeking joining in Bharat Dynamics Limited (BDL),
+        Corporate Office, Address: Bharat Dynamics Limited, Corporate office, Plot No. 38-39, TSFC
+        Building (Near ICICI Towers), Financial District, Gachibowli, Hyderabad, Telangana (State) -
+        500032. If at stage it is found that I have a physical handicap/ disability which would hinder
+        the pursuit of training in the Bharat Dynamics Limited, Kanchanbagh (PO), Hyderabad, Telangana –
+        500058 in which I am seeking Joining then my Joining will be liable to be cancelled. I will
+        produce medical fitness certificate from a C.M.O./C.M.S. at the time of my joining the
+        institution allotted by BDL-2025 Joining Report.
       </p>
 
       {/* Uploads and Signature Section */}
